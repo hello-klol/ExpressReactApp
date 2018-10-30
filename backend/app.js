@@ -3,6 +3,8 @@ const logger = require('morgan')
 
 const express = require('express')
 const mongoose = require('mongoose')
+
+// TODO: get details from global env
 const mongoDB = 'mongodb://admin:l0lc4t5@localhost:27017/campaigns'
 
 mongoose.connect(mongoDB)
@@ -16,12 +18,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-const indexRouter = require('./routes/index')
-
 const apiController = require('./controllers/campaignController').create(models)
 const apiRouter = require('./routes/api').create(express.Router(), apiController)
 
-app.use('/', indexRouter)
 app.use('/api', apiRouter)
 
 module.exports = app

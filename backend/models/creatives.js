@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 
-var Schema = mongoose.Schema
-
-var CreativesSchema = new Schema(
+const CreativesSchema = new mongoose.Schema(
   {
     header: { type: String },
     subheader: { type: String },

@@ -57,7 +57,10 @@ async function seedDatabase (url) {
       ])
 
       return new Platform(Object.assign(platformData, {
-        target_audience: targetAudience, creatives, insights
+        type: platformKey,
+        target_audience: targetAudience,
+        creatives,
+        insights
       })).save()
     })
   }
@@ -67,6 +70,7 @@ async function seedDatabase (url) {
       const platforms = await Promise.all(savePlatforms(campaign))
 
       return new Campaign(Object.assign(campaign, {
+        '_id': campaign.id,
         platforms
       })).save()
     })

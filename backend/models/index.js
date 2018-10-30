@@ -1,12 +1,15 @@
-
 const campaignModel = require('./campaign')
+const platformModel = require('./platform')
+const targetAudienceModel = require('./target_audience')
+const creativesModel = require('./creatives')
+const insightsModel = require('./insights')
 
-module.exports.create = (connection) => {
+module.exports.create = connection => {
   return {
     Campaign: campaignModel(connection),
-    Platform: require('./platform')(connection),
-    TargetAudience: require('./target_audience')(connection),
-    Creatives: require('./creatives')(connection),
-    Insights: require('./insights')(connection)
+    Platform: platformModel(connection),
+    TargetAudience: targetAudienceModel(connection),
+    Creatives: creativesModel(connection),
+    Insights: insightsModel(connection)
   }
 }

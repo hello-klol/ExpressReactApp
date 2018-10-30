@@ -1,17 +1,17 @@
 const async = require('async')
 
-const createController = (models) => {
-  const { Campaign } = models
-
-  const allCampaigns = function (req, res, next) {
+function allCampaigns (Campaign) {
+  return (req, res, next) => {
     Campaign.find({}, 'name goal totalBudget status')
       .exec(function (err, listCampaigns) {
         if (err) { return next(err) }
-        res.send(listCampaigns)
+        res.json(listCampaigns)
       })
   }
+}
 
-  const campaignDetails = function (req, res, next) {
+function campaignDetails (Campaign) {
+  return (req, res, next) => {
     async.parallel({
       campaign: function (callback) {
         Campaign.findById(req.params.id)
@@ -31,9 +31,15 @@ const createController = (models) => {
       res.send(results)
     })
   }
+}
+
+const createController = (models) => {
+  const allCampaignsFn = allCampaigns(models.Campaign)
+  const campaignDetailsFn = campaignDetails(models.Campaign)
 
   return {
-    allCampaigns, campaignDetails
+    allCampaigns: allCampaignsFn,
+    campaignDetails: campaignDetailsFn
   }
 }
 

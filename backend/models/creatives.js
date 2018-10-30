@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema
 
 var CreativesSchema = new Schema(
-    {
-        header:      { type: String },
-        subheader:   { type: String },
-        description: { type: String },
-        url:         { type: String },
-        image:       { type: String }
-    }
+  {
+    header: { type: String },
+    subheader: { type: String },
+    description: { type: String },
+    url: { type: String },
+    image: { type: String }
+  }
 )
 
-module.exports = connection => connection.model('Creatives', CreativesSchema);
+module.exports = connection => connection.model('Creatives', CreativesSchema)

@@ -13,6 +13,6 @@ var InsightsSchema = new Schema(
         advanced_kpi_1:     { type: Number },
         advanced_kpi_2:     { type: Number }
     }
-)
+);
 
 module.exports = connection => connection.model('Insights', InsightsSchema);

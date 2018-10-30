@@ -1,19 +1,27 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 
-var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
+const express = require('express')
+const mongoose = require('mongoose')
+const mongoDB = 'mongodb://admin:l0lc4t5@localhost:27017/campaigns'
 
-var app = express();
+mongoose.connect(mongoDB)
+mongoose.Promise = global.Promise
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'))
+const models = require('./models').create(mongoose.connection)
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+const app = express()
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
 
-app.use('/', indexRouter);
-app.use('/api', apiRouter);
+const indexRouter = require('./routes/index')
 
-module.exports = app;
+const apiController = require('./controllers/campaignController').create(models)
+const apiRouter = require('./routes/api').create(express.Router(), apiController)
+
+app.use('/', indexRouter)
+app.use('/api', apiRouter)
+
+module.exports = app

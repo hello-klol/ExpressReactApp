@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
-import { CampaignSummary } from './CampaignSummary'
+import React from 'react'
+import { TitleBar } from './TitleBar'
+import { CampaignList } from './CampaignList'
 
 import '../styles/App.css'
 
-class App extends Component {
+class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.setState({ currentState: 'CampaignList', title: 'Campaigns List' })
+  }
+
   render () {
     return (
-      <div>
-        <h1>Campaigns</h1>
-        <ul>
-          <li><CampaignSummary title='Campaign 1' /></li>
-          <li><CampaignSummary title='Campaign 2' /></li>
-          <li><CampaignSummary title='Campaign 3' /></li>
-        </ul>
+      <div id='app'>
+        <TitleBar class='titleBar' title='Campaigns List' />
+        <CampaignList class='campaignList' data={this.props.data} />
       </div>
     )
   }

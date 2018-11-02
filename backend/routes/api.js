@@ -1,7 +1,7 @@
 
 const buildRouter = (router, controller) => {
   router.get('/campaigns', controller.allCampaigns)
-  router.get('/campaign/:id', controller.campaignDetails)
+  router.get('/campaigns/:id', controller.campaignDetails)
   return router
 }
 

@@ -6,7 +6,7 @@ const apiRouter = require('../routes/api')
 const expectedMappings = (controller) => {
   return {
     '/campaigns': controller.allCampaigns,
-    '/campaign/:id': controller.campaignDetails
+    '/campaigns/:id': controller.campaignDetails
   }
 }
 
@@ -51,8 +51,8 @@ describe('API router', () => {
     }
   })
 
-  it('Check path /campaign/:id is set to correct controller fn', () => {
-    const apiPath = '/campaign/:id'
+  it('Check path /campaigns/:id is set to correct controller fn', () => {
+    const apiPath = '/campaigns/:id'
     apiRouter.create(fakeRouter, fakeController)
 
     for (a of fakeRouter.get.args) {

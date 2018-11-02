@@ -1,0 +1,45 @@
+version: '3'
+services:
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: admin
+#      MONGO_INITDB_ROOT_PASSWORD: l0lc4t5
+#      MONGO_INITDB_DATABASE: campaigns
+
+  db-seed:
+    container_name: db-seed
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-db-seed
+    environment:
+      MONGO_URL: mongodb://mongo:27017/campaigns
+    depends_on:
+      - mongo
+
+  api:
+    container_name: api
+    build: ./backend
+    volumes:
+      - './backend:/usr/src/api'
+    environment:
+      MONGO_URL: mongodb://mongo:27017/campaigns
+    ports:
+      - '3000:3000'
+    depends_on:
+    - mongo
+    - db-seed
+
+  app:
+    container_name: app
+    build: ./frontend
+    volumes:
+    - './frontend:/usr/src/app'
+    ports:
+    - '8080:8080'
+    depends_on:
+    - api

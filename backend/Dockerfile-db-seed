@@ -1,0 +1,10 @@
+FROM node:8
+WORKDIR /usr/src/seed
+COPY package.json .
+RUN npm install
+
+COPY data.json .
+COPY models models
+COPY seeddb.js .
+
+CMD node seeddb.js

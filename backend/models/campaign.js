@@ -8,7 +8,7 @@ const CampaignSchema = new mongoose.Schema(
     total_budget: { type: Number },
     status: { type: String, required: true, enum: ['Scheduled', 'Delivering', 'Ended'] },
     platforms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Platform' }]
-  }, { _id: false }
+  }
 )
 
 module.exports = connection => connection.model('Campaign', CampaignSchema)

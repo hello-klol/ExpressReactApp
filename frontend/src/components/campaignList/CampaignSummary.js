@@ -3,7 +3,9 @@ import React from 'react'
 export class CampaignSummary extends React.Component {
   render () {
     return (
-      <div class={this.props.class} >
+      <div
+        class='campaignSummary'
+        onClick={this.props.onClick}>
 
         <h1>{this.props.data.name}</h1>
         <p>

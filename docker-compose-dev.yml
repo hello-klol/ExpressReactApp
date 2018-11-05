@@ -14,7 +14,7 @@ services:
   db-seed:
     container_name: db-seed
     build:
-      context: ./backend
+      context: ./api
       dockerfile: Dockerfile-db-seed
     environment:
       MONGO_URL: mongodb://mongo:27017/campaigns
@@ -23,10 +23,10 @@ services:
 
   api:
     container_name: api
-    build: ./backend
+    build: ./api
     command: npm run startdev
     volumes:
-      - './backend:/usr/src/api'
+      - './api:/usr/src/api'
     environment:
       MONGO_URL: mongodb://mongo:27017/campaigns
     ports:
@@ -35,12 +35,12 @@ services:
     - mongo
     - db-seed
 
-  app:
-    container_name: app
-    build: ./frontend
+  client:
+    container_name: client
+    build: ./client
     command: npm run startdev
     volumes:
-      - './frontend:/usr/src/app'
+      - './client:/usr/src/app'
     ports:
       - '8080:8080'
     depends_on:

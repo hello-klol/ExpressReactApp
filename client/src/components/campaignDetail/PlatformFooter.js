@@ -6,11 +6,11 @@ export class PlatformFooter extends React.Component {
     return (
       <div class='platformFooter'>
         <h3>Total</h3>
-        <p>${this.props.totalBudget}</p>
-        <span className='platformInfo'>
+        <span>${this.props.totalBudget}</span>
+        <div className='info'>
           <InfoButton
             onClick={() => { console.log('Implement further info') }} />
-        </span>
+        </div>
       </div>
     )
   }

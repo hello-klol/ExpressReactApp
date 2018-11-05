@@ -3,9 +3,9 @@ This is still a WIP and many elements are not functioning quite right just yet.
 
 # Nanos Application
 
-This project consists of a Mongo database, an API written using ExpressJS, and a ReactJS app. The project can be deployed using Docker. Instructions are below.
+This project consists of a Mongo database, an API written using ExpressJS, and a ReactJS client. The project can be deployed using Docker. Instructions are below.
 
-`./backend/seeddb.js` is used to populate the database with the data from the `./backend/data.json` file when first building the application.
+`./api/seeddb.js` is used to populate the database with the data from the `./api/data.json` file when first building the application.
 
 ## Data Structure
 <img src="nanosCampaignERD.png" />

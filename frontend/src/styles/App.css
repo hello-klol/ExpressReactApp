@@ -3,51 +3,71 @@
     box-sizing: border-box;
 }
 
-html {
-    font-family: sans-serif;
-    -webkit-text-size-adjust: 100%;
-}
-body {
+html, body {
     margin: 0;
+    height: 100%;
     color: #454545;
-    font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
 }
 
-
 #app {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
+
 .titleBar {
+    z-index:1;
+    position: fixed;
     width: 100%;
+    height: 70px;
     background-color: #1bd3b4;
     color: #FFF;
     font-size: 20px;
     font-weight: bold;
-    margin: 0;
-    padding: 20px   50px;
+    padding: 20px 50px;
 }
 
-.campaignList {
-    margin: 1rem;
+.view {
+    margin-top: 70px;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
 }
+
+.button {
+    z-index: 1;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3125rem;
+    font-size: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.button.back {
+    background-color: rgb(27, 211, 180);
+    color: #FFF;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.25);
+}
+.button.info {
+    color: #c4c4c4;
+}
+
 .campaignSummary {
     margin: 1rem;
     border-radius: .3125rem;
     border: 3px solid #e1e1e1;
     overflow: hidden;
-    padding: 0.5em 2em 1em;
+    padding: 1.5em 2em 1em;
     width: 700px;
 }
 .campaignSummary:hover {
@@ -58,7 +78,7 @@ body {
 .campaignSummary h1 {
     font-size: 20px;
     line-height: 1.3;
-    margin: 0.5em 0;
+    margin: 0 0 0.5em;
 }
 .campaignSummary p {
     color: #959ca0;
@@ -66,4 +86,49 @@ body {
 }
 .campaignSummary .subtitle {
     font-weight: bold;
+}
+
+.campaignDetail {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.campaignPlatform {
+    margin: 20px;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.campaignPlatform h1 {
+    text-transform: capitalize  ;
+}
+.campaignPlatform h3 {
+    font-variant: small-caps;
+}
+.platformHeader, .budgetDetails, .platformFooter {
+    width: 100%;
+    padding: 0 50px 0;
+    border: 1px solid #e1e1e1;
+    text-align: center;
+}
+.platformHeader h1 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0.8em 0;
+}
+.platformInfo {
+    display: flex;
+    align-items: end;
+}
+.budgetDetails {
+    padding: 50px;
+}
+.budgetWheelKey {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

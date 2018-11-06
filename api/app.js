@@ -4,8 +4,7 @@ const logger = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
 
-// TODO: get details from global env
-const mongoDB = 'mongodb://admin:l0lc4t5@localhost:27017/campaigns'
+const mongoDB = process.env.MONGO_URL
 
 mongoose.connect(mongoDB)
 mongoose.Promise = global.Promise

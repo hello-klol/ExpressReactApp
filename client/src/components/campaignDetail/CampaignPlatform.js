@@ -7,7 +7,7 @@ import { PlatformFooter } from './PlatformFooter'
 export class CampaignPlatform extends React.Component {
   render () {
     return (
-      <div class='campaignPlatform'>
+      <div className='campaignPlatform'>
         <PlatformHeader
           type={this.props.type}
           status={this.props.data.status}

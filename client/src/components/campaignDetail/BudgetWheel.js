@@ -16,7 +16,7 @@ export class BudgetWheel extends React.Component {
     }
 
     return (
-      <div class='budgetDetails'>
+      <div className='budgetDetails'>
         <DoughnutChart
           options={doughnutOptions}
           width='200px'

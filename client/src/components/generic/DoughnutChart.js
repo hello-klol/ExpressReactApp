@@ -72,7 +72,7 @@ export class DoughnutChart extends React.Component {
   render () {
     return (
       <canvas
-        class={this.props.className}
+        className={this.props.className}
         ref='canvas'
         width={this.props.width}
         height={this.props.height} />

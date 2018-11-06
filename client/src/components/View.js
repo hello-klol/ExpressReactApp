@@ -34,7 +34,7 @@ export class View extends React.Component {
     switch (state) {
       case State.CAMPAIGN_LIST:
         return <CampaignList
-          class='campaignList'
+          className='campaignList'
           data={this.props.data}
           changeState={this.campaignListChange} />
 
@@ -47,7 +47,7 @@ export class View extends React.Component {
 
   render () {
     return (
-      <div class='view'>
+      <div className='view'>
         {this.getView(this.props.state)}
       </div>
     )

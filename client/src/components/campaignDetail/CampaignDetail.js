@@ -17,7 +17,7 @@ export class CampaignDetail extends React.Component {
     })
 
     return (
-      <div class='campaignDetail'>
+      <div className='campaignDetail'>
         <div>
           <BackButton
             onClick={this.props.onExit} />

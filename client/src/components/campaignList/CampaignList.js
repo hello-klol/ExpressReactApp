@@ -13,7 +13,7 @@ export class CampaignList extends React.Component {
     })
 
     return (
-      <div class={this.props.class}>
+      <div className={this.props.class}>
         {campaignList}
       </div>
     )

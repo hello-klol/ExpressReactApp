@@ -2,7 +2,7 @@ import React from 'react'
 import { TitleBar } from './TitleBar'
 import { View, ChangeType } from './View'
 
-import '../styles/App.css'
+import '../../styles/App.css'
 
 export const State = {
   CAMPAIGN_LIST: Symbol('CampaignList'),

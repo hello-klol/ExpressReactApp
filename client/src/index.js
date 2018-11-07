@@ -1,6 +1,1 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './components/App.js'
-import data from '../../api/data.json'
-
-ReactDOM.render(<App data={data} />, document.getElementById('root'))
+import index from './js/index'

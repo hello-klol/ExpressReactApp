@@ -1,0 +1,3 @@
+export const ADD_ARTICLE = 'ADD_ARTICLE'
+export const CLICK_CAMPAIGN = 'CLICK_CAMPAIGN'
+export const CAMPAIGN_EXIT = 'CAMPAIGN_EXIT'

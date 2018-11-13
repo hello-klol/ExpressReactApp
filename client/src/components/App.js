@@ -16,7 +16,6 @@ const title = new Map([
 class App extends React.Component {
   constructor (props) {
     super(props)
-    console.log('Constructin App')
     this.state = {
       currentState: State.LOADING
     }

@@ -2,7 +2,7 @@ const async = require('async')
 
 function allCampaigns (Campaign) {
   return (req, res, next) => {
-    Campaign.find({}, 'name goal totalBudget status')
+    Campaign.find({}, 'name goal total_budget status')
       .exec(function (err, listCampaigns) {
         if (err) { return next(err) }
         res.json(listCampaigns)

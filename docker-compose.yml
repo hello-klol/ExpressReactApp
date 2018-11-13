@@ -38,7 +38,7 @@ services:
     container_name: client
     build: ./client
     volumes:
-    - './client:/usr/src/app'
+    - './client:/usr/src/client'
     ports:
     - '8080:8080'
     depends_on:

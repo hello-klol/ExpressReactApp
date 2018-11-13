@@ -4,7 +4,8 @@
   "description": "Render Campaign components",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --host 0.0.0.0 --mode production",
+    "build": "webpack --mode production",
+    "start": "ecstatic ./dist -p 8080",
     "startdev": "webpack-dev-server --host 0.0.0.0 --mode development --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
     "@fortawesome/react-fontawesome": "^0.1.3",
+    "ecstatic": "^3.3.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },

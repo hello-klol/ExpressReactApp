@@ -1,7 +1,8 @@
 FROM node:8
-WORKDIR /usr/src/app
+WORKDIR /usr/src/client
 EXPOSE 8080
 COPY package.json .
 RUN npm install
 COPY . .
-CMD npm run startdev
+RUN npm run build
+CMD npm start

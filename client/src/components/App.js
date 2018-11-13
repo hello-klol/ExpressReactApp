@@ -1,15 +1,14 @@
 import React from 'react'
 import { TitleBar } from './TitleBar'
-import { View, ChangeType } from './View'
+import { View } from './View'
+import { State } from '../constants/States'
+import { Action } from '../constants/Actions'
+import { requestCampaignDetails, requestCampaignList } from '../requests/Campaign'
 
 import '../styles/App.css'
 
-export const State = {
-  CAMPAIGN_LIST: Symbol('CampaignList'),
-  CAMPAIGN_DETAIL: Symbol('CampaignDetail')
-}
-
 const title = new Map([
+  [State.LOADING, 'Loading app...'],
   [State.CAMPAIGN_LIST, 'Campaigns List'],
   [State.CAMPAIGN_DETAIL, 'Campaign Details']
 ])
@@ -17,42 +16,40 @@ const title = new Map([
 class App extends React.Component {
   constructor (props) {
     super(props)
+    console.log('Constructin App')
     this.state = {
-      currentState: State.CAMPAIGN_LIST,
-      title: title.get(State.CAMPAIGN_LIST),
-      data: this.props.data
+      currentState: State.LOADING
     }
     this.changeState = this.changeState.bind(this)
+    this.setCampaignList()
   }
 
-  handleCampaignListClick (campaignId) {
-    const campaignData = this.props.data.filter((campaign) => {
-      return campaign.id === campaignId
-    })
-    // TODO: make API call for data
+  async handleCampaignListClick (campaignId) {
+    const data = await requestCampaignDetails(campaignId)
     this.setState({
       currentState: State.CAMPAIGN_DETAIL,
       title: title.get(State.CAMPAIGN_DETAIL),
       campaignId: campaignId,
-      data: campaignData
+      data: data
     })
   }
 
-  setCampaignList () {
+  async setCampaignList () {
+    const data = await requestCampaignList()
     this.setState({
       currentState: State.CAMPAIGN_LIST,
       title: title.get(State.CAMPAIGN_LIST),
       campaignId: undefined,
-      data: this.props.data
+      data: data
     })
   }
 
   changeState (info) {
     switch (info.type) {
-      case ChangeType.CAMPAIGN_LIST_CLICK:
+      case Action.CAMPAIGN_LIST_CLICK:
         this.handleCampaignListClick(info.campaignId)
         return
-      case ChangeType.CAMPAIGN_DETAIL_EXIT:
+      case Action.CAMPAIGN_DETAIL_EXIT:
         this.setCampaignList()
     }
   }
@@ -61,7 +58,7 @@ class App extends React.Component {
     return (
       <div id='app'>
         <TitleBar
-          title={this.state.title} />
+          title={title.get(this.state.currentState)} />
         <View
           state={this.state.currentState}
           data={this.state.data}

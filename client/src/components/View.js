@@ -1,12 +1,8 @@
 import React from 'react'
 import { CampaignList } from './campaignList/CampaignList'
 import { CampaignDetail } from './campaignDetail/CampaignDetail'
-import { State } from './App'
-
-export const ChangeType = {
-  CAMPAIGN_LIST_CLICK: Symbol('CampaignListClick'),
-  CAMPAIGN_DETAIL_EXIT: Symbol('CampaignDetailExit')
-}
+import { Action } from '../constants/Actions'
+import { State } from '../constants/States'
 
 export class View extends React.Component {
   constructor (props) {
@@ -17,7 +13,7 @@ export class View extends React.Component {
 
   campaignListChange (campaignId) {
     const info = {
-      type: ChangeType.CAMPAIGN_LIST_CLICK,
+      type: Action.CAMPAIGN_LIST_CLICK,
       campaignId: campaignId
     }
     this.props.onChange(info)
@@ -25,13 +21,19 @@ export class View extends React.Component {
 
   campaignDetailExit () {
     const info = {
-      type: ChangeType.CAMPAIGN_DETAIL_EXIT
+      type: Action.CAMPAIGN_DETAIL_EXIT
     }
     this.props.onChange(info)
   }
 
   getView (state) {
     switch (state) {
+      case State.LOADING:
+        return (
+          <div>
+          Retrieving data, please wait
+          </div>
+        )
       case State.CAMPAIGN_LIST:
         return <CampaignList
           className='campaignList'
@@ -42,6 +44,8 @@ export class View extends React.Component {
         return <CampaignDetail
           data={this.props.data}
           onExit={this.campaignDetailExit} />
+      default:
+        return <div>Something went wrong</div>
     }
   }
 

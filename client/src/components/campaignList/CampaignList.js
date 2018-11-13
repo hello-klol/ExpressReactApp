@@ -6,9 +6,9 @@ export class CampaignList extends React.Component {
     const campaignList = this.props.data.map(campaign => {
       return (
         <CampaignSummary
-          key={`campaign_${campaign.id}`}
+          key={`campaign_${campaign._id}`}
           data={campaign}
-          onClick={() => this.props.changeState(campaign.id)} />
+          onClick={() => this.props.changeState(campaign._id)} />
       )
     })
 

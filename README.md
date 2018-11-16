@@ -9,6 +9,9 @@ first building the application (this will be triggered from within the docker-co
 The standard linter from [https://standardjs.com/](https://standardjs.com/) was used for all code in this
 project.
 
+The Express app was generated using [express-generator](https://expressjs.com/en/starter/generator.html) 
+as a project scaffold.
+
 ## Docker Containers
 Running the bash scripts uses `docker-compose` to spin up 4 containers for the app
 1. A container running Mongo

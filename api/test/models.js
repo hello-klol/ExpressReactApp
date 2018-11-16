@@ -9,7 +9,7 @@ const Creatives = require('../models/creatives')
 describe('models', () => {
   /* Before testing create a sandbox database connection */
   before((done) => {
-    mongoose.connect(process.env.MONGO_URL)
+    mongoose.connect(process.env.MONGO_URL + '/testdb', { useNewUrlParser: true })
     mongoose.connection.on('error', console.error.bind(console, 'connection error'))
     mongoose.connection.once('open', () => {
       console.log('Created and connected to test database')
@@ -26,13 +26,10 @@ describe('models', () => {
 
   /* Clean collections after each test so they don't affect each other */
   afterEach((done) => {
-    mongoose.connection.db.collections()
-      .then((collections) => {
-        for (let collection of collections) {
-          collection.deleteMany()
-        }
-        done()
-      })
+    const deletetions = [Campaign, Platform, TargetAudience, Insights, Creatives].map((Model) => {
+      return Model(mongoose.connection).deleteMany({}).exec()
+    })
+    Promise.all(deletetions).then(() => done()).catch(done)
   })
   describe('campaigns', () => {
     it('should handle valid save', (done) => {

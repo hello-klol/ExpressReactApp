@@ -3,6 +3,8 @@ services:
 
   mongo:
     container_name: mongo
+    logging:
+      driver: none  # reduce noise so we can see test output
     image: mongo
     ports:
     - '27017:27017'
@@ -11,8 +13,6 @@ services:
     container_name: api
     build: ./api
     command: npm run test
-    volumes:
-    - './api:/usr/src/api'
     environment:
       MONGO_URL: mongodb://mongo:27017
     depends_on:

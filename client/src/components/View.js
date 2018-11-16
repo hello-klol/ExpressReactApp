@@ -36,7 +36,6 @@ export class View extends React.Component {
         )
       case State.CAMPAIGN_LIST:
         return <CampaignList
-          className='campaignList'
           data={this.props.data}
           changeState={this.campaignListChange} />
 

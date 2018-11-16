@@ -28,7 +28,6 @@ class App extends React.Component {
     this.setState({
       currentState: State.CAMPAIGN_DETAIL,
       title: title.get(State.CAMPAIGN_DETAIL),
-      campaignId: campaignId,
       data: data
     })
   }
@@ -38,7 +37,6 @@ class App extends React.Component {
     this.setState({
       currentState: State.CAMPAIGN_LIST,
       title: title.get(State.CAMPAIGN_LIST),
-      campaignId: undefined,
       data: data
     })
   }

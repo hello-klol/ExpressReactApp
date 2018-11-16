@@ -2,19 +2,23 @@ import React from 'react'
 import { CampaignSummary } from './CampaignSummary'
 
 export class CampaignList extends React.Component {
-  render () {
-    const campaignList = this.props.data.map(campaign => {
+
+  campaignList (props) {
+    const campaigns = props.data || []
+    return campaigns.map(campaign => {
       return (
         <CampaignSummary
           key={`campaign_${campaign._id}`}
           data={campaign}
-          onClick={() => this.props.changeState(campaign._id)} />
+          onClick={() => props.changeState(campaign._id)} />
       )
     })
+  }
 
+  render () {
     return (
-      <div className={this.props.class}>
-        {campaignList}
+      <div className='campaignList'>
+        {this.campaignList(this.props)}
       </div>
     )
   }

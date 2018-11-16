@@ -9,7 +9,7 @@ const Creatives = require('../models/creatives')
 describe('models', () => {
   /* Before testing create a sandbox database connection */
   before((done) => {
-    mongoose.connect('mongodb://localhost/testDatabase')
+    mongoose.connect(process.env.MONGO_URL)
     mongoose.connection.on('error', console.error.bind(console, 'connection error'))
     mongoose.connection.once('open', () => {
       console.log('Created and connected to test database')

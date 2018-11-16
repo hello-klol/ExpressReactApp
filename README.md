@@ -10,7 +10,7 @@ The standard linter from [https://standardjs.com/](https://standardjs.com/) was 
 project.
 
 ## Docker Containers
-Running `docker-compose` will spin up 4 containers for the app
+Running the bash scripts uses `docker-compose` to spin up 4 containers for the app
 1. A container running Mongo
 2. A container that runs a script to seed the Mongo db with data and immediately shuts down on completion
 3. A container that runs the API using ExpressJS
@@ -23,9 +23,9 @@ immediately used by the container. The webpack devserver is used to serve the cl
 First the node modules need installing locally as they will be referenced from the docker containers
 built. From inside the nanos project directory:
 
-`cd api && npm install && cd ../client && npm install && cd ..`
+`./install.sh`
 
-`docker-compose -f docker-compose-dev.yml up --build`
+`./start-dev.sh`
 
 The api should be available at
 
@@ -42,7 +42,7 @@ The client should be available at
 ### To run in production mode
 In this mode the React app is transpiled using webpack and served on an ecstatic server
 
-`docker-compose up --build` 
+`./start-prod.sh` 
 
 The api should be available at the same address as above, the client should be available at 
 
@@ -51,7 +51,7 @@ The api should be available at the same address as above, the client should be a
 
 ### To run the tests
 
-`docker-compose -f docker-compose-test.yml up --build`
+`./start-test.sh`
 
 The intention was to have 3 containers running - a Mongo instance, an API intsance, and a client 
 instance. The Mongo instance was to be used in testing the Mongoose model definitions operate with the 

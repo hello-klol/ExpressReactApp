@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+    - '27017:27017'
+
+  api:
+    container_name: api
+    build: ./api
+    command: npm run test
+    volumes:
+    - './api:/usr/src/api'
+    environment:
+      MONGO_URL: mongodb://mongo:27017/campaigns
+    depends_on:
+    - mongo

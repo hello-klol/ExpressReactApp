@@ -6,10 +6,6 @@ services:
     image: mongo
     ports:
       - '27017:27017'
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: admin
-#      MONGO_INITDB_ROOT_PASSWORD: l0lc4t5
-#      MONGO_INITDB_DATABASE: campaigns
 
   db-seed:
     container_name: db-seed
@@ -17,7 +13,7 @@ services:
       context: ./api
       dockerfile: Dockerfile-db-seed
     environment:
-      MONGO_URL: mongodb://mongo:27017/campaigns
+      MONGO_URL: mongodb://mongo:27017
     depends_on:
       - mongo
 
@@ -28,7 +24,7 @@ services:
     volumes:
       - './api:/usr/src/api'
     environment:
-      MONGO_URL: mongodb://mongo:27017/campaigns
+      MONGO_URL: mongodb://mongo:27017
     ports:
       - '3000:3000'
     depends_on:

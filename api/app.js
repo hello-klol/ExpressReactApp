@@ -5,7 +5,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
-const mongoDB = process.env.MONGO_URL
+const mongoDB = process.env.MONGO_URL + '/campaigns'
 
 mongoose.connect(mongoDB)
 mongoose.Promise = global.Promise

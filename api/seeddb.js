@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 const data = require('./data.json')
 
-const mongoDbURL = process.env.MONGO_URL // split into userame password host
+const mongoDbURL = process.env.MONGO_URL + '/campaigns' // split into userame password host
 
 // for case where KeyWords / interests have different names but same meaning
 function cleanTargetAudience (aud) {

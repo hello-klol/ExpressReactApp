@@ -16,14 +16,36 @@ Running `docker-compose` will spin up 4 containers for the app
 
 ### To run in development mode
 In this mode the containers for the API and React app are mounted to the local drive so any changes are 
-immediately copied to the container and used. The webpack devserver is used to serve the client code.
+immediately used by the container. The webpack devserver is used to serve the client code.
+
+First the node modules need installing locally as they will be referenced from the docker containers
+built. From inside the nanos project directory:
+
+`cd api && npm install && cd ../client && npm install && cd ..`
 
 `docker-compose -f docker-compose-dev.yml up --build`
+
+The api should be available at
+
+[http://localhost:3000/api/campaigns](http://localhost:3000/api/campaigns)
+
+and
+
+[http://localhost:3000/api/campaigns/100000001](http://localhost:3000/api/campaigns/100000001)
+
+The client should be available at 
+
+[http://localhost:8080/](http://localhost:8080/)
 
 ### To run in production mode
 In this mode the React app is transpiled using webpack and served on an ecstatic server
 
 `docker-compose up --build` 
+
+The api should be available at the same address as above, the client should be available at 
+
+[http://localhost](http://localhost)
+
 
 ### To run the tests
 
@@ -51,7 +73,7 @@ Unfortunately I am running out of time and learning the enzyme library in order 
 is not reasonable at this point in the project.
 
 ## Data Structure
-<img src="nanosCampaignERD.png" />
+<img src="nanosCampaignERD.png" width="720px" height="655px" />
 
 The above collections are created in Mongo using the seed script and Mongoose model definitions. After 
 further research into Mongo and NoSQL databases I realise it's not required the collections be split in 
@@ -69,18 +91,18 @@ platform-type.
 
 ## Design
 
-<img src="double-phones.png" />
+<img src="double-phones.png" width="350px" height="466px" />
 
 The design of the client is an imitation of what is shown in the image from your website. For 
 this reason it hasn't gone so far as showing all the details of Audiences, Insights, and Creatives. The
 reason these were missed were simply the time constraints and the fact that the skills for creating and
-rendering components were already display and I was concerned with efficiency of use of my time to best 
+rendering components were already displayed and I was concerned with efficiency of use of my time to best 
 display the range of skills.
 
 ## Given more time
 
 Were I to spend more time on this - along with cleaning up many aspects of testing and error handling in
-the case pf unexpected events I would like to have incorporated use of Redux, MaterialUI, and ReactRouter. 
+the case of unexpected events, I would like to have incorporated use of Redux, MaterialUI, and ReactRouter. 
 I also would have spent time ensuring proper user account setup on the database with authentication for 
 security.
 

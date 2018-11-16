@@ -24,8 +24,6 @@ services:
   api:
     container_name: api
     build: ./api
-    volumes:
-      - './api:/usr/src/api'
     environment:
       MONGO_URL: mongodb://mongo:27017/campaigns
     ports:
@@ -37,9 +35,9 @@ services:
   client:
     container_name: client
     build: ./client
-    volumes:
-    - './client:/usr/src/client'
+    environment:
+      API_URL: http://localhost:3000/api
     ports:
-    - '8080:8080'
+    - '80:8080'
     depends_on:
     - api

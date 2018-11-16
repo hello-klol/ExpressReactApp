@@ -6,6 +6,8 @@ project can be deployed using Docker. Instructions are below.
 `./api/seeddb.js` is used to populate the database with the data from the `./api/data.json` file when 
 first building the application (this will be triggered from within the docker-compose script).
 
+The standard linter from [https://standardjs.com/](https://standardjs.com/) was used for all code in this
+project.
 
 ## Docker Containers
 Running `docker-compose` will spin up 4 containers for the app
@@ -104,7 +106,7 @@ display the range of skills.
 Were I to spend more time on this - along with cleaning up many aspects of testing and error handling in
 the case of unexpected events, I would like to have incorporated use of Redux, MaterialUI, and ReactRouter. 
 I also would have spent time ensuring proper user account setup on the database with authentication for 
-security.
+security. I would have used the `MONGO_INITDB` configuration values for this in the docker-compose files. 
 
 I have never been a professional React or Javascript developer so most of this has been learnt from 
 scratch. Were it a full time role I'm sure I would pick up more of the related skills and libraries very
